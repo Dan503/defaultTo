@@ -157,3 +157,7 @@ replaceValues(example, {
 
 //example now equals { one: 1, two: 'two', three: 'three'}
 `````
+
+##Developers
+
+When publishing, use the [babel-it](https://github.com/IonicaBizau/babel-it) npm plugin to to convert the js files into es5 syntax for better environment support.
