@@ -10,5 +10,8 @@
     "jade"
   ],
   "author": "Daniel Tonon",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "clone": "^2.0.0"
+  }
 }
