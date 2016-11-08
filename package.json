@@ -1,6 +1,6 @@
 {
   "name": "default-to",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easily set defaults to an object at multiple depths",
   "main": "index.js",
   "keywords": [
@@ -13,5 +13,13 @@
   "license": "MIT",
   "dependencies": {
     "clone": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dan503/defaultTo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dan503/defaultTo/issues"
+  },
+  "homepage": "https://github.com/Dan503/defaultTo#readme"
 }
