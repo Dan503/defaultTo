@@ -1,0 +1,14 @@
+{
+  "name": "default-to",
+  "version": "1.0.0",
+  "description": "Easily set defaults to an object at multiple depths",
+  "main": "index.js",
+  "keywords": [
+    "default",
+    "js",
+    "pug",
+    "jade"
+  ],
+  "author": "Daniel Tonon",
+  "license": "MIT"
+}
