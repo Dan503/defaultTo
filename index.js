@@ -1,13 +1,15 @@
 
 import clone from 'clone';
 
+function isObj(obj){
+	return typeof obj === 'object' && obj.constructor !== Array;
+}
+
 //- a function for easily applying default values, especially good for objects
 export default function defaultTo(variable, defaultVal){
 
-	//console.log(variable, defaultVal.constructor !== Array);
-
 	//if it's an object, treat each setting in the object seperately
-	if (typeof defaultVal === 'object' && defaultVal.constructor !== Array){
+	if (isObj(defaultVal)){
 		var finalParams = clone(defaultVal);
 
 		// We iterate over each property of the paramObject
@@ -22,7 +24,7 @@ export default function defaultTo(variable, defaultVal){
 			}
 
 			//if the value is an object, run the defaultTo function on the object
-			if (typeof defaultVal[key] === 'object' && defaultVal[key].constructor !== Array){
+			if (isObj(defaultVal[key])){
 				for (var subKey in defaultVal[key]) {
 					//if (defaultVal[key].hasOwnProperty(subKey)) {
 						finalParams[key][subKey] = defaultTo(variable[key][subKey], defaultVal[key][subKey]);
