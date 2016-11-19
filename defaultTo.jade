@@ -24,7 +24,9 @@ include ./clone
 				//if the value is an object, run the defaultTo function on the object
 				if (typeof defaultVal[key] === 'object' && defaultVal[key].constructor !== Array){
 					for (var subKey in defaultVal[key]) {
-						finalParams[key][subKey] = defaultTo(variable[key][subKey], defaultVal[key][subKey]);
+						if (defaultVal[key].hasOwnProperty(subKey)) {
+							finalParams[key][subKey] = defaultTo(variable[key][subKey], defaultVal[key][subKey]);
+						}
 					}
 				}
 			}

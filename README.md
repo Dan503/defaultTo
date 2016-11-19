@@ -111,15 +111,22 @@ This is a small variation on the defaultTo function that overides the origional 
 `````js
 import { applyDefaults } from 'default-to';
 
-var example = { one: 1 };
+var example = {
+    two: {
+        a: 'zzz'
+    }
+};
 
 applyDefaults(example, {
-    one: 'one',
-    two: 'two',
-    three: 'three'
+    one: 1,
+    two : {
+        a: 'aaa',
+        b: 'bbb'
+    },
+    three: 3
 });
 
-//example now equals { one: 1, two: 'two', three: 'three'}
+//example now equals { one: 1, two: {a:'zzz', b: 'bbb' }, three: 3}
 `````
 
 **WARNING!!!** in order to use this version of defaultTo, `example` **must** already be defined as something.
@@ -140,22 +147,27 @@ function funcName(variable = {}){
 
 ###replaceValues
 
-This is kind of like the inverse of applyDefaults. It is used in the same sort of way as `applyDefaults` but it doesn't bother checking if the value has a predefined default or not. It will just force replace the values instead.
+This is essentially the inverse of applyDefaults. It is used in the same sort of way as `applyDefaults` but it doesn't bother checking if the value has a predefined default or not. It will just force replace the values instead. It will still check if the value is an object or not so deep replacements are still possible
+
+This function is also restricted by the need to have the variable value defined like `applyDefaults`.
 
 `````js
 import { replaceValues } from 'default-to';
 
 var example = {
-    one: 'one',
-    two: 'two',
-    three: 'three'
+    one: 1,
+    two : {
+        a: 'aaa',
+        b: 'bbb'
+    },
+    three: 3
 };
 
 replaceValues(example, {
-    one: 1,
+    two: { a : 'zzz'},
 });
 
-//example now equals { one: 1, two: 'two', three: 'three'}
+//example now equals { one: 1, two: {a:'zzz', b: 'bbb' }, three: 3}
 `````
 
 ##Developers

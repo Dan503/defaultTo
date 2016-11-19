@@ -1,13 +1,15 @@
 
 import clone from 'clone';
 
+function isObj(obj){
+	return typeof obj === 'object' && obj.constructor !== Array;
+}
+
 //- a function for easily applying default values, especially good for objects
 export default function defaultTo(variable, defaultVal){
 
-	//console.log(variable, defaultVal.constructor !== Array);
-
 	//if it's an object, treat each setting in the object seperately
-	if (typeof defaultVal === 'object' && defaultVal.constructor !== Array){
+	if (isObj(defaultVal)){
 		var finalParams = clone(defaultVal);
 
 		// We iterate over each property of the paramObject
@@ -22,11 +24,11 @@ export default function defaultTo(variable, defaultVal){
 			}
 
 			//if the value is an object, run the defaultTo function on the object
-			if (typeof defaultVal[key] === 'object' && defaultVal[key].constructor !== Array){
+			if (isObj(defaultVal[key])){
 				for (var subKey in defaultVal[key]) {
-					//if (defaultVal[key].hasOwnProperty(subKey)) {
+					if (defaultVal[key].hasOwnProperty(subKey)) {
 						finalParams[key][subKey] = defaultTo(variable[key][subKey], defaultVal[key][subKey]);
-					//}
+					}
 				}
 			}
 		}
@@ -52,13 +54,16 @@ function applyDefaults (obj, defaults){
 	}
 
 	for (var property in defaults) {
-		//if (defaults.hasOwnProperty(property)) {
+		if (defaults.hasOwnProperty(property)) {
 			obj[property] = defaultTo(obj[property], defaults[property])
-		//}
+		}
 	}
+
+	return obj;
 }
 
 //doesn't bother checking for defaults, just replaces values
+//!!WARNING!! obj MUST be a defined object for the function to work
 function replaceValues (obj, replacements){
 	if (typeof obj === 'undefined'){
 		console.log('WARNING! a replaceValues object is undefined, these replacements were not applied:\n', replacements);
@@ -66,8 +71,16 @@ function replaceValues (obj, replacements){
 	}
 
 	for (var property in replacements) {
-		obj[property] = replacements[property]
+		if (replacements.hasOwnProperty(property)) {
+			if (isObj(replacements[property])){
+				replaceValues(obj[property], replacements[property]);
+			} else {
+				obj[property] = replacements[property];
+			}
+		}
 	}
+
+	return obj;
 }
 
 export { defaultTo, applyDefaults, replaceValues }
