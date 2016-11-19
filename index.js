@@ -26,9 +26,9 @@ export default function defaultTo(variable, defaultVal){
 			//if the value is an object, run the defaultTo function on the object
 			if (isObj(defaultVal[key])){
 				for (var subKey in defaultVal[key]) {
-					//if (defaultVal[key].hasOwnProperty(subKey)) {
+					if (defaultVal[key].hasOwnProperty(subKey)) {
 						finalParams[key][subKey] = defaultTo(variable[key][subKey], defaultVal[key][subKey]);
-					//}
+					}
 				}
 			}
 		}
@@ -54,13 +54,14 @@ function applyDefaults (obj, defaults){
 	}
 
 	for (var property in defaults) {
-		//if (defaults.hasOwnProperty(property)) {
+		if (defaults.hasOwnProperty(property)) {
 			obj[property] = defaultTo(obj[property], defaults[property])
-		//}
+		}
 	}
 }
 
 //doesn't bother checking for defaults, just replaces values
+//!!WARNING!! obj MUST be a defined object for the function to work
 function replaceValues (obj, replacements){
 	if (typeof obj === 'undefined'){
 		console.log('WARNING! a replaceValues object is undefined, these replacements were not applied:\n', replacements);
