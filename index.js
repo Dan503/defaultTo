@@ -58,6 +58,8 @@ function applyDefaults (obj, defaults){
 			obj[property] = defaultTo(obj[property], defaults[property])
 		}
 	}
+
+	return obj;
 }
 
 //doesn't bother checking for defaults, just replaces values
@@ -77,6 +79,8 @@ function replaceValues (obj, replacements){
 			}
 		}
 	}
+
+	return obj;
 }
 
 export { defaultTo, applyDefaults, replaceValues }
