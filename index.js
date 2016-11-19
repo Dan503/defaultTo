@@ -68,8 +68,12 @@ function replaceValues (obj, replacements){
 	}
 
 	for (var property in replacements) {
-		if (defaults.hasOwnProperty(property)) {
-			obj[property] = isObj(replacements[property]) ? replaceValues(obj[property], replacements[property]) : replacements[property];
+		if (replacements.hasOwnProperty(property)) {
+			if (isObj(replacements[property])){
+				replaceValues(obj[property], replacements[property]);
+			} else {
+				obj[property] = replacements[property];
+			}
 		}
 	}
 }
