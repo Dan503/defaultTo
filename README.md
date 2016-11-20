@@ -77,7 +77,7 @@ var example = typeof variable !== 'undefined' ? variable : 'default value';
 
 ##Pug and Jade usage
 
-This npm package also comes with Pug and Jade versions of the function. To use the function in your pug/jade templates add this to the top of your base pug/jade file:
+This npm package also comes with [Pug and Jade](https://pugjs.org/api/getting-started.html) versions of the function. To use the function in your pug/jade templates add this to the top of your base pug/jade file:
 
 `````jade
 include ../../node_modules/default-to/defaultTo
@@ -145,30 +145,9 @@ function funcName(variable = {}){
 }
 `````````
 
-###replaceValues
+##Breaking changes
 
-This is essentially the inverse of applyDefaults. It is used in the same sort of way as `applyDefaults` but it doesn't bother checking if the value has a predefined default or not. It will just force replace the values instead. It will still check if the value is an object or not so deep replacements are still possible
-
-This function is also restricted by the need to have the variable value defined like `applyDefaults`.
-
-`````js
-import { replaceValues } from 'default-to';
-
-var example = {
-    one: 1,
-    two : {
-        a: 'aaa',
-        b: 'bbb'
-    },
-    three: 3
-};
-
-replaceValues(example, {
-    two: { a : 'zzz'},
-});
-
-//example now equals { one: 1, two: {a:'zzz', b: 'bbb' }, three: 3}
-`````
+**v2.0.0:** The replaceValues function has been moved from the default-to package into it's own [seperate npm package](https://www.npmjs.com/package/replace-values). Also the replaceValues function syntax is more reminiscent of the defaultTo function syntax in how it is used now rather than the applyDefaults syntax.
 
 ##Developers
 
