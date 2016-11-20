@@ -5,11 +5,13 @@ Easily set defaults to an object at multiple depths
 npm install default-to --save
 `````
 
-This npm plugin is used to rapidly apply defaults to javascript objects.
+This function is essentially the opposite of my [replaceValues](https://www.npmjs.com/package/replace-values) function.
 
 ##JS Usage
 
 This is how you would use it in a javascript file
+
+###Single level
 
 `````js
 var defaultTo = require('default-to');
@@ -21,9 +23,19 @@ var defaultToExample = defaultTo(example, {
     two: 'two',
     three: 'three'
 });
-
-//defaultToExample now equals { one: 1, two: 'two', three: 'three'}
 `````
+
+In this case `example` would now equal this:
+
+`````js
+{
+    one: 1,
+    two: 'two',
+    three: 'three'
+}
+`````
+
+###Nested
 
 The function can also assign defaults to nested objects
 
@@ -62,6 +74,8 @@ In this case `defaultToExample` would now equal this:
     }
 }
 `````
+
+###Flat
 
 You can also just use it on flat variables
 
