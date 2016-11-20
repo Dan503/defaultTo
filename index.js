@@ -62,25 +62,4 @@ function applyDefaults (obj, defaults){
 	return obj;
 }
 
-//doesn't bother checking for defaults, just replaces values
-//!!WARNING!! obj MUST be a defined object for the function to work
-function replaceValues (obj, replacements){
-	if (typeof obj === 'undefined'){
-		console.log('WARNING! a replaceValues object is undefined, these replacements were not applied:\n', replacements);
-		return false;
-	}
-
-	for (var property in replacements) {
-		if (replacements.hasOwnProperty(property)) {
-			if (isObj(replacements[property])){
-				replaceValues(obj[property], replacements[property]);
-			} else {
-				obj[property] = replacements[property];
-			}
-		}
-	}
-
-	return obj;
-}
-
-export { defaultTo, applyDefaults, replaceValues }
+export { defaultTo, applyDefaults }
